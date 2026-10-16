@@ -1,6 +1,6 @@
 # Faroz — MCP server & Gemini CLI extension
 
-Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](https://faroz.uz), a learning platform for children aged 8–17. Teachers, parents and content authors use it to plan lessons and create learning content by simply talking to the assistant.
+Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](https://faroz.uz), a learning platform for children aged 8–17. Teachers, parents and content authors use it to plan lessons, create learning content and check students' homework by simply talking to the assistant.
 
 **MCP endpoint:** `https://faroz.uz/mcp` (Streamable HTTP, OAuth 2.0 with dynamic client registration)
 **Official MCP Registry:** `uz.faroz/faroz`
@@ -10,7 +10,9 @@ Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](ht
 | Area | Capabilities |
 |------|--------------|
 | Courses | Browse the catalog and your own courses, search, open full details (lessons, exercises, subject, level, age range, price). Create courses and edit title, description, subject, level, age range, tags and visibility. |
-| Lessons | Add lessons to a course, edit them, attach up to 5 exercises to each lesson, and reorder the course plan. |
+| Lessons | Add lessons to a course, edit them, attach up to 5 exercises to each lesson, reorder the course plan, and switch on homework with a task text. |
+| Homework review | List students' submissions, open one to see the task, the student's comment, the photos and the text of PDF / Word / PowerPoint files, then grade it (0–100) with feedback the student sees in the app, or send it back for rework. Grades feed the student's mastery. |
+| Student progress | See a course's students ranked by mastery (no phone numbers or emails). |
 | Interactive exercises | Turn any text, topic or lesson plan into ready-to-use exercises. Each exercise is checked against the Faroz format before saving, so it opens correctly in the mobile and web apps. |
 | Games | Browse game categories and games. Authors with the `games` permission can build games from 1–20 exercises. |
 | Library | Browse the subject tree and your media library (video, audio, images) to reuse in exercises. |
@@ -20,13 +22,16 @@ Text multiple choice · picture multiple choice · fill in the blanks · typed a
 
 ## Tools
 
-**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `list_exercises`, `get_exercise`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
+**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
 
 **Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`
 
-**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`
+**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `review_homework`
 
-There are **no delete tools**. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app.
+There are **no delete tools**. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app. Homework tools work only for the course's staff (teacher, support teacher, course admin).
+
+## Homework
+Students submit homework for a lesson in the Faroz app: images, audio, PDF, Word or presentations, up to 20 MB in total, plus an optional comment. Files are stored privately and served only through signed links that expire. Teachers review them in the app or with an AI assistant through this server.
 
 ## Install
 
@@ -46,18 +51,16 @@ gemini extensions install https://github.com/Akramjon-koder/faroz-mcp
 - "Here is a paragraph about the water cycle. Make a multiple-choice, a fill-in-the-blank and a typed-answer exercise from it, then add them to lesson 2."
 - "Open my fractions course, check every lesson's exercises for mistakes or unclear questions, and fix what you find."
 - "Show my courses and list the exercises in the first lesson."
+- "Check all homework waiting for review in my fractions course, grade each one and write short feedback for every student."
+- "Who are the top 5 students in my course by mastery?"
 
 ## Requirements
 A free Faroz account: sign up at [faroz.uz](https://faroz.uz). No API key is needed.
 
 ## Roadmap
-Planned teacher tools, not available yet:
-- View students' lesson results, attendance and mastery ratings in your courses
-- Check submitted assignments and see the results
-- Send feedback to students
-- Help students with lessons and learning progress
-
-These tools will act only on students in the teacher's own courses.
+Possible next steps:
+- Per-student progress reports for teachers and parents
+- Help for students with their lessons and learning progress
 
 ## Privacy & support
 - Privacy policy: https://faroz.uz/privacy

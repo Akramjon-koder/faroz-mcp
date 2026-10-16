@@ -1,7 +1,7 @@
 {
   "name": "faroz",
-  "version": "1.0.0",
-  "description": "Faroz kids' learning platform (faroz.uz): browse, create and edit courses, lessons, exercises and games. Sign in with your Faroz account (OAuth).",
+  "version": "1.1.0",
+  "description": "Faroz kids' learning platform (faroz.uz): courses, lessons, exercises, games and homework review. Sign in with your Faroz account (OAuth).",
   "mcpServers": {
     "faroz": {
       "httpUrl": "https://faroz.uz/mcp"

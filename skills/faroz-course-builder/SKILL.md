@@ -1,6 +1,6 @@
 ---
 name: faroz-course-builder
-description: Build a complete, beautiful Faroz course through the Faroz MCP tools (create_course, add_lesson, create_exercise, list_media, list_subjects, get_course_filters, validate_exercise_body, update_course, reorder_lessons…). ALWAYS use when the user asks to create/make/build a course, lessons, or a lesson set on any topic in Faroz ("kurs yarat", "kurs tuz", "darslar qil", "make a course about…"), or to extend/improve an existing Faroz course. Ensures every tool is used, full metadata + banner, 4–6 lessons with theory/practice/test exercises, all 11 block types, styled text, homework, validation and a final checklist before publishing.
+description: Build a complete, beautiful Faroz course through the Faroz MCP tools (create_course, add_lesson, create_exercise, list_media, list_subjects, get_course_filters, validate_exercise_body, update_course, reorder_lessons…). ALWAYS use when the user asks to create/make/build a course, lessons, or a lesson set on any topic in Faroz ("kurs yarat", "kurs tuz", "darslar qil", "make a course about…"), or to extend/improve an existing Faroz course. Ensures every tool is used, full metadata + banner, 4–6 lessons with theory/practice/test exercises, all 11 content block types, column/row layouts, styled text, homework, validation and a final checklist before publishing.
 ---
 
 <!-- Body is a copy of backend/edu_app/api/mcp/docs/course_authoring.md (served by the MCP
@@ -80,7 +80,7 @@ The last lesson's test is a **final test** covering the whole course (10–15 qu
 
 Per **lesson**: styled `quill_text` · ≥ 1 `container` · ≥ 1 visual (`image` / `gallery` / `video`) · **≥ 3 different answer-input types** (`title_test`, `image_test`, `placeholder_exercise`, `typing`, `speech_exercise`).
 
-Per **course**: use **all 11 block types** at least once, unless a type truly doesn't fit (e.g. `speech_exercise` in a math course — then say so in the report). `video` at least once per course (ideally the first page of each lesson). `audio` for language, music, reading, pronunciation topics.
+Per **course**: use **all 11 content block types** at least once, unless a type truly doesn't fit (e.g. `speech_exercise` in a math course — then say so in the report). `video` at least once per course (ideally the first page of each lesson). `audio` for language, music, reading, pronunciation topics.
 
 ---
 
@@ -97,6 +97,7 @@ Per **course**: use **all 11 block types** at least once, unless a type truly do
 - **`image_test`**: exactly 4 cards, each image clearly different. When the question is "which picture shows X?", card titles must be neutral (`A`, `B`, `C`, `D`) — a card titled with the answer (`"Saturn"`) gives it away. Use descriptive titles only when the question asks about something other than the name.
 - **`gallery`**: 2, 3, 4, 6 or 9 images, with `symvol_type: "A-Z"` when the text refers to them ("A rasmda…").
 - **`placeholder_exercise`**: blanks are key words; `start` offsets must be exact (`previous.start + previous.text.length`); 2–4 distractors in `extraItems`.
+- **Layouts (`column` / `row`)**: a `row` puts compact blocks **side by side** (equal widths, on phones too) — image + its caption, two images to compare ("before / after", "A vs B"), two short `title_test`s each with its own question. Keep it to 2–3 children (max 4); `video`, normal `audio` and big galleries stay full width. A `column` lets one `container` hold **several blocks** (rule text + example image, question + test). Use them where they make a page clearer — not on every page. An answer tool inside a layout still needs its question in the same `column`, right above it. Schema: `tool_schemas` §12.
 - **Footprint**: lesson pages 2–6 blocks; split long theory into more pages instead of one tall page.
 - **`speech_exercise`**: speech recognition runs in **English** (`en`) — the `answer` must be an English phrase (≤ 60 chars), e.g. an English quote or vocabulary. For an Uzbek-only topic, use it for a famous English quote/term, or skip it and say so.
 - **Points**: 1 for easy, 2 for calculation/multi-step questions.
@@ -127,7 +128,7 @@ Per **course**: use **all 11 block types** at least once, unless a type truly do
 2. ≥ 3 lessons (default 4–6), each with a description; first lesson `is_public: true`.
 3. Each lesson has 2–3 exercises in the order theory → practice → test; the last lesson ends with a final test.
 4. `validate_exercise_body` returned **0 errors and 0 warnings** for every exercise (or each remaining warning is deliberate and explained).
-5. Course uses all 11 block types (or the report explains which ones don't fit and why); ≥ 1 video.
+5. Course uses all 11 content block types (`column` / `row` are optional layout helpers, not counted) (or the report explains which ones don't fit and why); ≥ 1 video.
 6. Every answer-input block has its own question; short `title_test` options are < 12 chars with an even count.
 7. Homework on 1–2 lessons with a concrete description.
 8. The report lists: course link, lessons → exercise ids + block types used, homework, and gaps.

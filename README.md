@@ -17,8 +17,10 @@ Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](ht
 | Games | Browse game categories and games. Authors with the `games` permission can build games from 1–20 exercises. |
 | Library | Browse the subject tree and your media library (video, audio, images) to reuse in exercises. |
 
-### Exercise block types (11)
+### Exercise block types (11 + 2 layouts)
 Text multiple choice · picture multiple choice · fill in the blanks · typed answer · speak-aloud answer (speech recognition) · image · image gallery · audio · video · styled rich text · callout boxes (rules, examples, tips)
+
+Layout blocks: `column` (blocks one under another — e.g. several blocks inside one callout) and `row` (2–3 blocks side by side with equal widths, on phones too).
 
 ## Tools
 
@@ -39,7 +41,7 @@ Every client gets the same course-authoring playbook automatically — no setup 
 - **Tool results:** `create_course` returns `next_steps`; `create_exercise` / `update_exercise` return `validation_warnings` (e.g. a test without a question, unstyled text) so the assistant fixes them.
 - **Skill file:** [`skills/faroz-course-builder/SKILL.md`](skills/faroz-course-builder/SKILL.md) — upload it as a skill in Claude, or use it from the ChatGPT/Codex plugin.
 
-What the playbook enforces: full course metadata and a banner, 4–6 lessons with 2–3 exercises each (theory → practice → test, final test at the end), all 11 block types across the course, a question above every answer block, styled text and callouts, verified image/video/audio links, homework on 1–2 lessons, building with `is_active=false` and publishing only after a final check.
+What the playbook enforces: full course metadata and a banner, 4–6 lessons with 2–3 exercises each (theory → practice → test, final test at the end), all 11 content block types across the course (plus `column` / `row` layouts where they help), a question above every answer block, styled text and callouts, verified image/video/audio links, homework on 1–2 lessons, building with `is_active=false` and publishing only after a final check.
 
 ## Homework
 Students submit homework for a lesson in the Faroz app: images, audio, PDF, Word or presentations, up to 20 MB in total, plus an optional comment. Files are stored privately and served only through signed links that expire. Teachers review them in the app or with an AI assistant through this server.

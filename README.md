@@ -28,7 +28,7 @@ Layout blocks: `column` (blocks one under another — e.g. several blocks inside
 
 **Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`
 
-**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `update_media`, `review_homework`
+**Edit (overwrites existing content):** `update_course`, `set_course_pricing`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `update_media`, `review_homework`
 
 There are **no delete tools**. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app. Homework tools work only for the course's staff (teacher, support teacher, course admin).
 

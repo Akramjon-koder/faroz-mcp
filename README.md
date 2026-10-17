@@ -15,7 +15,7 @@ Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](ht
 | Student progress | See a course's students ranked by mastery (no phone numbers or emails). |
 | Interactive exercises | Turn any text, topic or lesson plan into ready-to-use exercises. Each exercise is checked against the Faroz format before saving, so it opens correctly in the mobile and web apps. |
 | Games | Browse game categories and games. Authors with the `games` permission can build games from 1–20 exercises. |
-| Library | Browse the subject tree and your media library (video, audio, images) to reuse in exercises. |
+| Library | Browse the subject tree and your media library (video, audio, images) to reuse in exercises, and write titles, descriptions and tags for your own media. |
 
 ### Exercise block types (11 + 2 layouts)
 Text multiple choice · picture multiple choice · fill in the blanks · typed answer · speak-aloud answer (speech recognition) · image · image gallery · audio · video · styled rich text · callout boxes (rules, examples, tips)
@@ -28,7 +28,7 @@ Layout blocks: `column` (blocks one under another — e.g. several blocks inside
 
 **Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`
 
-**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `review_homework`
+**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `update_media`, `review_homework`
 
 There are **no delete tools**. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app. Homework tools work only for the course's staff (teacher, support teacher, course admin).
 

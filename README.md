@@ -74,6 +74,9 @@ Possible next steps:
 - Per-student progress reports for teachers and parents
 - Help for students with their lessons and learning progress
 
+## License
+The files in this repository (extension manifest, context file and skills) are released under the [MIT License](LICENSE). The Faroz platform and the MCP server behind `https://faroz.uz/mcp` are proprietary services.
+
 ## Privacy & support
 - Privacy policy: https://faroz.uz/privacy
 - Terms: https://faroz.uz/terms

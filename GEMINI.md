@@ -8,4 +8,7 @@ The `faroz` MCP server acts on behalf of the signed-in Faroz user, with the same
 - The `create_course` MCP prompt (`/create_course <topic>`) runs the same playbook.
 - Before creating an exercise, call `get_exercise_format_guide` (at least `tool_schemas` and `ui_layout_rules`), then check the body with `validate_exercise_body`.
 - Write in the language the user asks for (Uzbek or English). Do not mix languages in one text.
-- The server has no delete tools.
+- Attaching exercises to lessons: search with `list_exercises(scope="global", query=<ID, title, description or category>)`. An exercise with `locked: true` belongs to another teacher and is not available to the user yet — do not attach it; follow its `suggestion` and tell the user.
+- Lesson calendar: `get_course_schedule`, then `reschedule_lesson` / `add_calendar_lesson` / `set_group_schedule`. Times are Tashkent time (`YYYY-MM-DDTHH:MM`).
+- Recommendations & strategies: collect fitting recommendations with `search(types=["recommendation"])`, create missing ones with `create_recommendation` (age range + dates), then `create_strategy(recommendation_ids=[...], age_min, age_max)`.
+- The server has no delete tools and never shows or changes prices, subscriptions or payments.

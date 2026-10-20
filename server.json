@@ -2,9 +2,9 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "uz.faroz/faroz",
   "title": "Faroz",
-  "description": "Faroz kids' learning platform: courses, lessons, exercises, games and homework review.",
+  "description": "Faroz kids' learning platform: courses, lessons, exercises, homework, calendar and strategies.",
   "websiteUrl": "https://faroz.uz",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "icons": [
     {
       "src": "https://faroz.uz/icons/Icon-512.png",

@@ -1,6 +1,6 @@
 # Faroz — MCP server & Gemini CLI extension
 
-Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](https://faroz.uz), a learning platform for children aged 8–17. Teachers, parents and content authors use it to plan lessons, create learning content and check students' homework by simply talking to the assistant.
+Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](https://faroz.uz), a learning platform for children aged 8–17. Teachers, parents and content authors use it to plan lessons, create learning content, run the lesson calendar, check students' homework and build age-appropriate habits by simply talking to the assistant.
 
 **MCP endpoint:** `https://faroz.uz/mcp` (Streamable HTTP, OAuth 2.0 with dynamic client registration)
 **Official MCP Registry:** `uz.faroz/faroz`
@@ -9,13 +9,16 @@ Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](ht
 
 | Area | Capabilities |
 |------|--------------|
-| Courses | Browse the catalog and your own courses, search, open full details (lessons, exercises, subject, level, age range, price). Create courses and edit title, description, subject, level, age range, tags and visibility. |
-| Lessons | Add lessons to a course, edit them, attach up to 5 exercises to each lesson, reorder the course plan, and switch on homework with a task text. |
+| Courses | Browse the catalog and your own courses, search, open full details (lessons, exercises, subject, level, age range). Create courses and edit title, description, subject, level, age range, tags and visibility. |
+| Lessons | Add lessons to a course, edit them, attach up to 5 exercises to each lesson (your own or other teachers' exercises found by ID, title, description or category), reorder the course plan, and switch on homework with a task text. |
+| Lesson calendar | See a course's schedule, move a lesson to another day or time, add an extra lesson, or change a group's weekly timetable. New lessons are placed on the calendar automatically. |
 | Homework review | List students' submissions, open one to see the task, the student's comment, the photos and the text of PDF / Word / PowerPoint files, then grade it (0–100) with feedback the student sees in the app, or send it back for rework. Grades feed the student's mastery. |
 | Student progress | See a course's students ranked by mastery (no phone numbers or emails). |
 | Interactive exercises | Turn any text, topic or lesson plan into ready-to-use exercises. Each exercise is checked against the Faroz format before saving, so it opens correctly in the mobile and web apps. |
 | Games | Browse game categories and games. Authors with the `games` permission can build games from 1–20 exercises. |
 | Library | Browse the subject tree and your media library (video, audio, images) to reuse in exercises, and write titles, descriptions and tags for your own media. |
+| Recommendations & strategies | Create recommendations with an age range and dates, and group them into strategies (e.g. "beating laziness") that children of the right age can follow step by step. |
+| Search | One search across courses, exercises, videos, audio, images, recommendations and strategies. |
 
 ### Exercise block types (11 + 2 layouts)
 Text multiple choice · picture multiple choice · fill in the blanks · typed answer · speak-aloud answer (speech recognition) · image · image gallery · audio · video · styled rich text · callout boxes (rules, examples, tips)
@@ -24,13 +27,13 @@ Layout blocks: `column` (blocks one under another — e.g. several blocks inside
 
 ## Tools
 
-**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
+**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `get_course_schedule`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
 
-**Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`
+**Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`, `add_calendar_lesson`, `create_recommendation`, `create_strategy`, `add_strategy_recommendations`
 
-**Edit (overwrites existing content):** `update_course`, `set_course_pricing`, `update_lesson`, `reorder_lessons`, `update_exercise`, `update_game`, `update_media`, `review_homework`
+**Edit (overwrites existing content):** `update_course`, `update_lesson`, `reorder_lessons`, `reschedule_lesson`, `set_group_schedule`, `update_exercise`, `update_game`, `update_media`, `review_homework`, `update_recommendation`, `update_strategy`, `reorder_strategy_stages`
 
-There are **no delete tools**. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app. Homework tools work only for the course's staff (teacher, support teacher, course admin).
+There are **no delete tools** and **no payments**: prices, subscriptions and wallets are never shown or changed through this server. Every call runs as the signed-in user, with exactly the same permissions as in the Faroz app. Homework tools work only for the course's staff (teacher, support teacher, course admin).
 
 ## Building a complete course (built-in playbook)
 Every client gets the same course-authoring playbook automatically — no setup needed:
@@ -67,6 +70,8 @@ gemini extensions install https://github.com/Akramjon-koder/faroz-mcp
 - "Show my courses and list the exercises in the first lesson."
 - "Check all homework waiting for review in my fractions course, grade each one and write short feedback for every student."
 - "Who are the top 5 students in my course by mastery?"
+- "Move tomorrow's lesson of my fractions course to Friday at 16:00."
+- "Build a 'beating laziness' strategy for 10–12 year olds from fitting recommendations and add one new daily recommendation for November."
 
 ## Requirements
 A free Faroz account: sign up at [faroz.uz](https://faroz.uz). No API key is needed.

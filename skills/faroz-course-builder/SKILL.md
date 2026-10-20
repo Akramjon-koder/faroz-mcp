@@ -24,9 +24,8 @@ The most common failure — and what this playbook prevents — is a "minimal" c
 | Pages per exercise | theory 3–5 · practice 2–4 · test 1–2 |
 | Language | the language the user wrote in (Uzbek Latin by default). Never mix languages inside one string. Use one apostrophe style consistently (`o'`, `g'`). |
 | Age range | infer from topic/grade (e.g. 7-sinf → 12–14); never leave 0–99 |
-| Price | `free` unless the user asks |
 | Exercise access | `private` (course students can still open it — lessons grant access) unless the user wants it reusable → `free` |
-| First lesson | `is_public: true` (free preview for non-members); the rest `false` (unlocked at 80 % progress) |
+| First lesson | `is_public: true` (open to everyone who views the course); the rest `false` (unlocked at 80 % progress) |
 | Homework | on for 1–2 lessons where a product is natural (a drawing, a solved problem set, a recording) |
 
 Only ask the user a question if the topic itself is unclear. Otherwise build, then report.
@@ -37,13 +36,13 @@ Only ask the user a question if the topic itself is unclear. Otherwise build, th
 
 Run the steps in order. Each step names the tool(s); skipping a step is the usual cause of an ugly course.
 
-1. **`whoami`** — confirm who you act as and their permissions.
+1. **`whoami`** — confirm whose account you act as.
 2. **`list_courses(scope="mine", search=<topic>)`** — avoid duplicating an existing course; if one exists, ask whether to extend it (`update_course` / `add_lesson`) instead.
 3. **`list_subjects`** + **`get_course_filters`** — pick `subject` from the subject tree **by exact name** (prefer the leaf, e.g. `Mexanika` under `Fizika`) and **reuse existing** `categories` / `genres` / `tags` spellings (don't create `matematika` next to `Matematika`).
 4. **`get_exercise_format_guide(topics=["tool_schemas","ui_layout_rules","quill_text_styling","container_usage","gallery_usage"])`** — read **all five** topics once before writing the first body.
 5. **`list_media(media_type="videos"|"audios"|"images", query=<topic>, scope="usable")`** — look for platform media first. A video from the library (YouTube links work in the `video` block) beats any external link. If nothing fits, use stable public URLs (see §5).
 6. **`list_exercises`** / **`get_exercise`** — optional: open a good existing exercise as a style sample, and reuse an existing exercise when it fits a lesson.
-7. **`create_course`** — fill **every** field: `title`, `description`, `subject`, `categories`, `genres`, `tags`, `level`, `age_min`, `age_max`, `price_type`, `banner_url`, and `is_active: false` while building.
+7. **`create_course`** — fill **every** field: `title`, `description`, `subject`, `categories`, `genres`, `tags`, `level`, `age_min`, `age_max`, `banner_url`, and `is_active: false` while building.
 8. For each lesson:
    1. Write each exercise body → **`validate_exercise_body`** → fix **all errors and all warnings** → **`create_exercise`** (with `description` and `group_categories`).
    2. **`add_lesson`** with `title` ("1-dars. …"), a one-sentence `description`, `exercise_ids` (in play order), `is_public`, and `homework_enabled` + a concrete `homework_description` where planned.

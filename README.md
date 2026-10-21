@@ -1,9 +1,13 @@
-# Faroz — MCP server & Gemini CLI extension
+# Faroz MCP server — remote MCP for a kids' education platform
+
+[![Faroz MCP connector](https://glama.ai/mcp/connectors/uz.faroz/faroz/badges/score.svg)](https://glama.ai/mcp/connectors/uz.faroz/faroz)
+
+**Endpoint:** `https://faroz.uz/mcp` · **Docs:** [faroz.uz/faroz-mcp](https://faroz.uz/faroz-mcp/) · **Registry:** `uz.faroz/faroz` · **Auth:** OAuth 2.0 (no API key)
+
 
 Connect AI assistants (Claude, ChatGPT, Gemini and any MCP client) to [Faroz](https://faroz.uz), a learning platform for children aged 8–17. Teachers, parents and content authors use it to plan lessons, create learning content, run the lesson calendar, check students' homework and build age-appropriate habits by simply talking to the assistant.
 
-**MCP endpoint:** `https://faroz.uz/mcp` (Streamable HTTP, OAuth 2.0 with dynamic client registration)
-**Official MCP Registry:** `uz.faroz/faroz`
+Transport: Streamable HTTP. Auth: OAuth 2.0 with dynamic client registration — the client opens the Faroz sign-in page on first use.
 
 ## What you can do
 
@@ -27,7 +31,7 @@ Layout blocks: `column` (blocks one under another — e.g. several blocks inside
 
 ## Tools
 
-**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `get_course_schedule`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
+**Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `get_course_schedule`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_usages`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
 
 **Create:** `create_course`, `add_lesson`, `create_exercise`, `create_game`, `add_calendar_lesson`, `create_recommendation`, `create_strategy`, `add_strategy_recommendations`
 
@@ -54,6 +58,20 @@ Students submit homework for a lesson in the Faroz app: images, audio, PDF, Word
 **Claude:** Settings → Connectors → *Add custom connector* → URL `https://faroz.uz/mcp` → Connect → sign in with your Faroz account.
 
 **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → *Create* → MCP Server URL `https://faroz.uz/mcp`, Authentication: OAuth.
+
+**Claude Code**
+```bash
+claude mcp add --transport http faroz https://faroz.uz/mcp
+```
+
+**Cursor, VS Code, Windsurf and other `mcp.json` clients**
+```json
+{
+  "mcpServers": {
+    "faroz": { "url": "https://faroz.uz/mcp" }
+  }
+}
+```
 
 **Gemini CLI**
 ```bash

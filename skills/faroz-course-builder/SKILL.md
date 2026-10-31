@@ -81,6 +81,15 @@ Per **lesson**: styled `quill_text` · ≥ 1 `container` · ≥ 1 visual (`image
 
 Per **course**: use **all 11 content block types** at least once, unless a type truly doesn't fit (e.g. `speech_exercise` in a math course — then say so in the report). `video` at least once per course (ideally the first page of each lesson). `audio` for language, music, reading, pronunciation topics.
 
+### AI-graded page types (English courses)
+
+Besides block pages an exercise can hold typed pages (`get_exercise_format_guide(["page_types"])`):
+
+- **`grammar_check`** — for English grammar / writing lessons: add it as the **last page of the practice exercise ②** with a concrete writing `prompt` on the lesson's rule and a `target_level`. The student writes, photographs the work, and AI reports the mistakes and the CEFR level.
+- **`language_speaking`** — for English speaking / exam-prep courses: one exercise **per exam part** (the speaking page is the exercise's only page; read the `language_speaking` topic). Put the parts of one mock exam into one lesson in order.
+
+They do not count towards the 11 block types; mention them in the report.
+
 ---
 
 ## 4. Making pages beautiful

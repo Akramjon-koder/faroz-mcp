@@ -29,6 +29,12 @@ Text multiple choice · picture multiple choice · fill in the blanks · typed a
 
 Layout blocks: `column` (blocks one under another — e.g. several blocks inside one callout) and `row` (2–3 blocks side by side with equal widths, on phones too).
 
+### AI-graded pages
+- **Grammar check** (`grammar_check`) — the student photographs written English work; AI lists the grammar mistakes and the CEFR level. Mixes with block pages.
+- **Speaking exam part** (`language_speaking`) — one CEFR Multilevel or IELTS speaking part; the student answers by voice and AI grades the recordings. One part per exercise.
+
+See `get_exercise_format_guide(topics=["page_types"])` and `["language_speaking"]`.
+
 ## Tools
 
 **Read-only:** `whoami`, `search`, `fetch`, `list_courses`, `get_course`, `get_course_filters`, `get_course_schedule`, `list_course_students`, `list_homework_submissions`, `get_homework_submission`, `list_exercises`, `get_exercise`, `get_exercise_usages`, `get_exercise_format_guide`, `validate_exercise_body`, `list_game_categories`, `list_games`, `list_media`, `list_subjects`
